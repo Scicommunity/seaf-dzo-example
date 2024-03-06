@@ -1,0 +1,142 @@
+components:
+  sber.astream.app.home_cinema.catalog.db:
+    title: БД метаданных контента
+    entity: database
+    description: База данных для хранения информации о фильмах, актёрах, режиссёрах
+    technologies:
+      - Postgres Pro Enterprise
+    type: component
+    aspects:
+      - aspects_sber.astream.app.home_cinema.search
+    sber:
+      component_type: Реляционная СУБД
+      scalability: Нет
+      stores_confidential_data: false
+      provider: Postgres
+      provider_type: Локальный разработчик
+      is_component_of: sber.astream.app.home_cinema.catalog
+  sber.astream.app.home_cinema.catalog.search:
+    title: Поиск контента
+    entity: component
+    description: Механизмы поиска и фильтрации фильмов по различным критериям (жанр, год выпуска, рейтинг и т.д.).
+    type: component
+    links:
+      - id: sber.astream.app.home_cinema.catalog.db
+        title: Поиск
+        direction: -->
+
+    aspects:
+      - aspects_sber.astream.app.home_cinema.search
+    sber:
+      component_type: Сервер Приложений
+      scalability: Вертикальная и горизонтальная
+      stores_confidential_data: false
+      provider: Astream
+      provider_type: Собственная разработка
+      is_component_of: sber.astream.app.home_cinema.catalog
+  sber.astream.app.home_cinema.catalog.storage:
+    title: Хранение контента
+    entity: component
+    description: Компонент для хранения контента
+    type: component
+    technologies:
+      - Evo Object Storage
+    aspects:
+      - aspects_sber.astream.app.home_cinema.media_storage
+    sber:
+      component_type: Иное
+      scalability: Вертикальная и горизонтальная
+      stores_confidential_data: false
+      provider: SberCloud
+      provider_type: Локальный разработчик
+      is_component_of: sber.astream.app.home_cinema.catalog
+
+  sber.astream.app.home_cinema.auth.token_manager:
+    entity: component
+    type: component
+    title: Менеджер токенов
+    sber:
+      is_component_of: sber.astream.app.home_cinema.auth
+      component_type: Микросервис
+      scalability: Горизонтальная
+      provider: astream
+      provider_type: Собственная разработка
+      stores_confidential_data: true
+      cloud_readiness: Компоненты в гибридном публичном облаке/наборе облаков с управляемыми облачными поставщиками инфраструктурными сервисами (Cloud Native 5)
+  sber.astream.app.home_cinema.auth.session_manager:
+    entity: component
+    type: component
+    title: Менежер сессий
+    sber:
+      is_component_of: sber.astream.app.home_cinema.auth
+      component_type: Микросервис
+      scalability: Горизонтальная
+      provider: astream
+      provider_type: Собственная разработка
+      stores_confidential_data: false
+      cloud_readiness: Компоненты в гибридном публичном облаке/наборе облаков с управляемыми облачными поставщиками инфраструктурными сервисами (Cloud Native 5)
+  sber.astream.app.home_cinema.auth.authentication:
+    entity: component
+    type: component
+    title: Компонент для аутентификации
+    sber:
+      is_component_of: sber.astream.app.home_cinema.auth
+      component_type: Микросервис
+      scalability: Горизонтальная
+      provider: astream
+      provider_type: Собственная разработка
+      stores_confidential_data: true
+      cloud_readiness: Компоненты в гибридном публичном облаке/наборе облаков с управляемыми облачными поставщиками инфраструктурными сервисами (Cloud Native 5)
+  sber.astream.app.mediaplatform.component:
+    title: Компонент (Тест)
+    entity: component
+    type: component
+    sber:
+      component_type: Иное
+      provider: Astream
+      stores_confidential_data: false
+      provider_type: Собственная разработка
+      scalability: Нет
+      is_component_of: sber.astream.app.mediaplatform
+      cloud_readiness: Компоненты в гибридном публичном облаке/наборе облаков с управляемыми облачными поставщиками инфраструктурными сервисами (Cloud Native 5)
+  sber.astream.app.erp1c.buh:
+    entity: component
+    title: 1С Бухгалтерия
+    type: component
+    links:
+      - id: sber.astream.app.erp1c.db
+        direction: -->
+    sber:
+      is_component_of: sber.astream.app.erp1c
+      component_type: Сервер Приложений
+      scalability: Горизонтальная
+      stores_confidential_data: true
+      provider: 1C
+      provider_type: Локальный разработчик
+      cloud_readiness: Компоненты в контейнерах на виртуализированном аппаратном обеспечении (Cloud ready 2)
+  sber.astream.app.erp1c.db:
+    entity: database
+    title: БД 1С
+    type: component
+    sber:
+      is_component_of: sber.astream.app.erp1c
+      component_type: Реляционная СУБД
+      scalability: Вертикальная
+      stores_confidential_data: true
+      provider: Microsoft
+      provider_type: Внешний(Иностранный)
+      cloud_readiness: Монолит на виртуализированном аппаратном обеспечении (Cloud Ready 1)
+  sber.astream.app.home_cinema.payments.gateway:
+    title: Шлюз
+    entity: component
+    type: component
+
+  sber.astream.app.home_cinema.payments.billingengine:
+    title: Биллинг
+    entity: component
+    type: component
+    links:
+      - id: sber.astream.app.home_cinema.payments.gateway
+        direction: <-->
+        title: платежи
+

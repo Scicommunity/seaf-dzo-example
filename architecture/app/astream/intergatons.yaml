@@ -1,0 +1,32 @@
+seaf.app.integrations:
+  sber.astream.id_payments_accounting:
+    title: Учет платежей пользователей
+    from: sber.astream.app.home_cinema.payments
+    description: Взаимодействие сервиса с платформой
+    to: sber.astream.app.erp1c.buh
+    sber:
+      agreement: Контракт
+      id: HC01
+      async: Истинно
+      status: Используется
+      protected:
+        - СЗИ1
+      technical-use: По событию
+      changes: Описание изменений
+      comments:
+        - комментарий 1
+      load:
+        maximum: не более 1000
+      data-objects:
+      technologies:
+        - API
+  sber.astream.home_cinema.catalog_auth:
+    title: Авторизация
+    description: Авторизация в сервисе
+    from: sber.astream.app.home_cinema.catalog
+    to: sber.astream.app.home_cinema.auth
+  sber.astream.home_cinema.payments_auth:
+    title: Платежи
+    description: Сервис оплаты
+    from: sber.astream.app.home_cinema.payments
+    to: sber.astream.app.home_cinema.auth

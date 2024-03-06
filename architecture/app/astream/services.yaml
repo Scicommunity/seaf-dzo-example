@@ -1,0 +1,88 @@
+components:
+  sber.astream:
+    entity: component
+    title: Компания Astream
+    type: service
+  sber.astream.app:
+    entity: component
+    title: Слой прикладной архитектуры
+    type: service
+  sber.astream.app.home_cinema:
+    entity: component
+    title: >-
+      Сервис Домашний  
+      кинотеатр
+    type: service
+    sber:
+      criticality: Mission Critical
+      class: Иное
+      role_model: Централизованная
+  sber.astream.app.mediaplatform:
+    title: Медиаплатформа
+    entity: component
+    type: service
+    sber:
+      role_model: Централизованная
+      criticality: Business Critical
+      class: CMS (Content Management System)
+
+  sber.astream.app.home_cinema.catalog:
+    entity: component
+    title: >-
+      Сервис каталог фильмов
+    type: service
+    description: Каталог фильмов
+    aspects:
+      - aspects_sber.astream.app.home_cinema.media_storage
+      - aspects_sber.astream.app.home_cinema.search
+      - aspects_sber.astream.app.home_cinema.tv_streaming
+      - aspects_sber.astream.app.home_cinema.tv_streaming.multiplex1
+    sber:
+      role_model: Централизованная
+      criticality: Business Critical
+      class: CMS (Content Management System)
+      comments: Дополнительные комментарии по фукциональной подсистеме
+  sber.astream.app.home_cinema.payments:
+    entity: component
+    title: Сервис платежей
+    description: Осуществление платежей пользователей за подписки
+    type: service
+    sber:
+      criticality: Business Operational
+      role_model: Централизованная
+      class: Иное
+
+  sber.astream.app.home_cinema.canals:
+    entity: component
+    title: Сервис трансляции ТВ-Каналов
+    description: Трансляция ТВ-каналов
+    type: service
+    aspects:
+      - aspects_sber.astream.app.home_cinema.tv_streaming
+      - aspects_sber.astream.app.home_cinema.tv_streaming.multiplex1
+    sber:
+      criticality: Business Operational
+      role_model: Централизованная
+      class: Иное
+
+  sber.astream.app.home_cinema.auth:
+    entity: component
+    title: Cервис аутентификации
+    type: service
+    description: Авторизация пользователей для доступа к Домашнему кинотеатру
+    aspects:
+      - aspects_sber.astream.app.auth
+    sber:
+      criticality: Business Critical
+      role_model: Централизованная
+      class: Клиентский профиль (Customer Information File)
+  sber.astream.app.erp1c:
+    entity: component
+    title: 1C ERP
+    type: service
+    aspects:
+      - aspects_sber.astream.app.accounting
+    sber:
+      role_model: Централизованная
+      criticality: Office Productivity
+      class: Бухгалтерия и финансы

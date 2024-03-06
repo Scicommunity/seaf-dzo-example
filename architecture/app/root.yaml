@@ -1,8 +1,13 @@
 imports:
   - base/root.yaml
-  - services.yaml
-  - functionality.yaml
-  - components.yaml
-  - integrations.yaml
-  - contexts.yaml
-  - requirements.yaml
+  - berezka/services.yaml
+  - berezka/functionality.yaml
+  - berezka/components.yaml
+  - berezka/integrations.yaml
+  - berezka/contexts.yaml
+  - berezka/requirements.yaml
+  - astream/services.yaml
+  - astream/components.yaml
+  - astream/contexts.yaml
+  - astream/aspects.yaml
+  - astream/intergatons.yaml

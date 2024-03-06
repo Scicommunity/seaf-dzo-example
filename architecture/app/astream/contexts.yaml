@@ -1,0 +1,43 @@
+contexts:
+  sber:
+    title: Группа Сбер
+  sber.astream:
+    title: Компания Astream
+  sber.astream.app:
+    title: Прикладные сервисы Компании Astream
+    location: Прикладные сервисы
+    presentation: plantuml
+    components:
+      - sber.astream.app.*
+  sber.astream.app.home_cinema:
+    title: Прикладные сервисы Кинотеатр
+    location: Прикладные сервисы Домашний кинотеатр
+    components:
+      - sber.astream.app.home_cinema.**
+  sber.astream.app.home_cinema.payments:
+    title: Компоненты сервиса платежей
+    location: Компоненты сервиса платежей
+    components:
+      - sber.astream.app.home_cinema.payments.*
+
+
+  sber.astream.app.home_cinema.catalog:
+    title: Компоненты сервиса
+    location: Компоненты сервиса Домашний кинотеатр
+    components:
+      - sber.astream.app.home_cinema.catalog.**
+    #      - sber.astream.app.home_cinema.catalog.search
+    #      - sber.astream.app.home_cinema.catalog.storage
+    #      - sber.berezka.app.home_cinema.payments  sber.astream.app.home_cinema.auth:
+
+
+  sber.astream.app.mediaplatform:
+    title: Компоненты медиаплатформы
+    location: Компоненты медиаплатформы
+    components:
+      - sber.astream.app.mediaplatform.*
+  sber.astream.app.erp1c:
+    components:
+      - sber.astream.app.erp1c.**
+    location: Компоненты 1С
+    title: Компоненты 1С
